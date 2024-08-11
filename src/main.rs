@@ -64,9 +64,13 @@ fn vrename(inputs: &Inputs) -> Result<()> {
 
     // Perform the renames
     for (old_name, new_name) in &name_map {
-        fs::rename(old_name, new_name)
-            .map_err(|err| anyhow!("failed to rename {old_name} to {new_name}: {err}"))?;
-        eprintln!("renamed \"{old_name}\" to \"{new_name}\"");
+        if old_name != new_name {
+            fs::rename(old_name, new_name)
+                .map_err(|err| anyhow!("failed to rename {old_name} to {new_name}: {err}"))?;
+            eprintln!("renamed \"{old_name}\" to \"{new_name}\"");
+        } else {
+            eprintln!("skipped \"{old_name}\" since the name didn't change");
+        }
     }
 
     Ok(())

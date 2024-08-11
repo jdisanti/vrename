@@ -4,7 +4,6 @@ version = "1.0.0"
 edition = "2021"
 authors = ["John DiSanti"]
 description = "Batch rename files with your preferred text editor"
-license = "GPLv3"
 license-file = "COPYING"
 
 [dependencies]
